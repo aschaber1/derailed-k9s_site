@@ -15,6 +15,7 @@ layout: section
 You can style K9s based on your own sense of look and style. Skins are YAML files, that enable a user to change the K9s presentation layer.
 Skin files live in `$XDG_CONFIG_HOME/k9s/skins` folder. You can specify a general skin using `skin: skin_file_name_no_extension` attribute that applies to all your clusters.
 Additionally, you can also skin individual contexts by defining the same `skin` attribute in your context specific configuration block.
+Lastly, you can completely override these settings in your shell via setting `K9S_SKIN` in the environment, e.g. `export K9S_SKIN="dracula"`.
 
 If a skin file exists for your cluster then the skin will be loaded if not the stock skin remains in effect.
 So if your want different K9s look and feel on a per context basis and say your cluster is `clusterX` and your context is `contextY` then you skin attribute would read `skin: blee`.

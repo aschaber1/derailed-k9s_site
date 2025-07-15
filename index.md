@@ -58,15 +58,6 @@ K9s is a terminal based UI to interact with your Kubernetes clusters. The aim of
 
 If you dig this effort and feel K9s is improving your Kubernetes experience and productivity for you or your team, please join our sponsorship program! K9s is complex and demands a lot of work, by clicking the [Sponsor button](https://github.com/sponsors/derailed) you can show your support and appreciation. Alternatively, just simply give us a shoot-out on social as these go a long way in keeping our batteries charged up!
 
-## 🥳 Our Rhodium Sponsors!
-
-Below are organizations that have opted to show their support, pay it forward and sponsor K9s.
-
-<br/>
-<a href="https://panfactum.com"><img src="assets/sponsors/panfactum.png" alt="panfactum"></a>
-<br/>
-<br/>
-
 <br/>
 
 # <i class="fas fa-book"/> Documentation

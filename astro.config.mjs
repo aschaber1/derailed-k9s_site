@@ -4,9 +4,21 @@ import starlight from "@astrojs/starlight";
 import starlightImageZoom from "starlight-image-zoom";
 import remarkGfm from "remark-gfm";
 
+// When deployed to a fork's GitHub Pages (project site under a subpath, e.g.
+// https://<user>.github.io/<repo>/), assets must be served from that subpath.
+// GitHub Actions sets GITHUB_REPOSITORY="owner/name". For the canonical
+// "derailed" deploy we keep the apex domain with no base (see AGENTS.md).
+const repo = process.env.GITHUB_REPOSITORY;
+const [owner, name] = repo?.split("/") ?? [];
+const isFork = Boolean(owner) && owner !== "derailed";
+
+const site = isFork ? `https://${owner}.github.io` : "https://k9scli.io";
+const base = isFork ? `/${name}/` : undefined;
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://k9scli.io",
+  site,
+  base,
   markdown: {
     // Ensure GitHub-flavored Markdown (tables, etc.) works in .md and .mdx.
     remarkPlugins: [remarkGfm],

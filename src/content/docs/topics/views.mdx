@@ -29,18 +29,18 @@ An aggregated, cross-kind view of your workloads with `KIND` and `READY` columns
 
 ## Image Vulnerability Scans
 
-K9s can surface CVE/vulnerability information for your container images using a Trivy-style scanner. Enable it via `imageScans` in your [configuration](/topics/config/). Once enabled, press <kbd>v</kbd> in a Pods/Containers view to show vulnerabilities, <kbd>Shift</kbd>+<kbd>V</kbd> to sort by them, and <kbd>↵</kbd> on a CVE to open the advisory in your browser.
+K9s can surface CVE/vulnerability information for your container images using a Trivy-style scanner. Enable it via `imageScans` in your [configuration](../config/). Once enabled, press <kbd>v</kbd> in a Pods/Containers view to show vulnerabilities, <kbd>Shift</kbd>+<kbd>V</kbd> to sort by them, and <kbd>↵</kbd> on a CVE to open the advisory in your browser.
 
 <Aside type="note">
   You can exclude namespaces or workloads (by label) from scanning. See the
-  `imageScans.exclusions` block in the [configuration](/topics/config/) docs.
+  `imageScans.exclusions` block in the [configuration](../config/) docs.
 </Aside>
 
 ## Port-Forwards
 
 `:pf`
 
-Lists the port-forwards active for the current K9s session. Set one up by selecting a container that exposes a port and pressing <kbd>Shift</kbd>+<kbd>F</kbd>. Port-forwards last only for the duration of the session and can be benchmarked — see [Benchmarking](/topics/bench/).
+Lists the port-forwards active for the current K9s session. Set one up by selecting a container that exposes a port and pressing <kbd>Shift</kbd>+<kbd>F</kbd>. Port-forwards last only for the duration of the session and can be benchmarked — see [Benchmarking](../bench/).
 
 ## RBAC Viewer
 

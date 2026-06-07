@@ -18,9 +18,3 @@ pnpm-debug.log*
 
 # macOS
 .DS_Store
-
-# jekyll (legacy, pending removal)
-_site
-.sass-cache
-.jekyll-metadata
-.jekyll-cache

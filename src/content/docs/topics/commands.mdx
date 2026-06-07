@@ -1,0 +1,73 @@
+---
+title: Commands
+description: K9s CLI arguments, keyboard shortcuts, and command/filter modes.
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+## CLI Arguments
+
+K9s CLI comes with a few arguments that you can use to launch the tool with different configuration.
+
+```shell
+# List all available CLI options
+k9s help
+# Get info about K9s runtime (logs, configs, etc..)
+k9s info
+# Run K9s in a given namespace.
+k9s -n mycoolns
+# Run K9s and launch in pod view via the pod command.
+k9s -c pod
+# Start K9s in a non default KubeConfig context
+k9s --context coolCtx
+# Start K9s in readonly mode - with all modification commands disabled
+k9s --readonly
+```
+
+## Keyboard Shortcuts
+
+| Action                                                                  | Keys                                          |
+| ----------------------------------------------------------------------- | --------------------------------------------- |
+| Show active keyboard mnemonics and help                                 | <kbd>?</kbd>                                   |
+| Show all available resource aliases                                     | <kbd>Ctrl</kbd>+<kbd>A</kbd>                   |
+| Bail out of K9s                                                         | <kbd>:q</kbd> or <kbd>Ctrl</kbd>+<kbd>C</kbd>  |
+| Bail out of view/command/filter mode                                    | <kbd>Esc</kbd>                                 |
+| Describe, view, edit, view logs, ...                                    | <kbd>d</kbd> <kbd>v</kbd> <kbd>e</kbd> <kbd>l</kbd> ... |
+| Delete a resource (<kbd>Tab</kbd> then <kbd>↵</kbd> to confirm)          | <kbd>Ctrl</kbd>+<kbd>D</kbd>                   |
+| Kill a resource (no confirmation, equivalent to `kubectl delete --now`) | <kbd>Ctrl</kbd>+<kbd>K</kbd>                   |
+
+## Command Mode
+
+Press <kbd>:</kbd> to open the command prompt, type a command, and press <kbd>↵</kbd> to run it. Use it to jump to a resource view or switch your context and namespace.
+
+| Command                      | Description                                                          |
+| ---------------------------- | ------------------------------------------------------------------- |
+| `:pod`                       | View a resource by its singular, plural, short-name, or alias       |
+| `:pod ns-x`                  | View a resource in the `ns-x` namespace                             |
+| `:pod /fred`                 | View pods, pre-filtered by `fred`                                   |
+| `:pod app=fred,env=dev`      | View pods matching labels `app=fred` and `env=dev`                  |
+| `:pod @ctx1`                 | View pods in context `ctx1` (also switches your active context)     |
+| `:ctx`                       | List contexts and switch to another                                 |
+| `:ctx context-name`          | Switch directly to a named context                                  |
+| `:ns`                        | List namespaces and switch to another                               |
+| `:screendump` or `:sd`       | View all saved resources                                            |
+| `:pulses` or `:pu`           | Launch the Pulses view                                              |
+| `:xray RESOURCE [NAMESPACE]` | Launch the XRay view (`po`, `svc`, `dp`, `rs`, `sts`, `ds`; namespace optional) |
+
+<Aside type="caution">
+  Switching context with `:ctx` (or `:pod @ctx1`) changes your **active k9s
+  context**, not just the current view.
+</Aside>
+
+The command prompt also offers autosuggestions based on resource names, short names, and your aliases. See [Aliases](/topics/aliases/) for details.
+
+## Filter Mode
+
+Press <kbd>/</kbd> to filter the resources in the current view, then press <kbd>↵</kbd>. Unlike command mode, filters refine what is already on screen rather than navigating to a new view.
+
+| Filter                | Description                                                |
+| --------------------- | ---------------------------------------------------------- |
+| `/filter`             | Filter the current view (regex2 supported, e.g. `fred\|blee`) |
+| `/! filter`           | Inverse filter — keep everything that _doesn't_ match      |
+| `/-l label-selector`  | Filter the current view by labels                          |
+| `/-f filter`          | Fuzzy-find a resource within the current view              |

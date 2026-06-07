@@ -22,12 +22,31 @@ The plugin file content can be either a single plugin snippet, a collections of 
 
 A plugin is defined as follows:
 
-- Shortcut option represents the key combination a user would type to activate the plugin
-- Description will be printed next to the shortcut in the k9s menu
-- Scopes defines a collection of resources name/short-name for the views associated with the plugin. You can specify `all` to provide this shortcut for all views.
-- Command represents ad-hoc commands the plugin runs upon activation
-- Background specifies whether or not the command runs in the background
-- Args specifies the various arguments that should apply to the command above
+- `shortCut` represents the key combination a user would type to activate the plugin.
+- `description` will be printed next to the shortcut in the K9s menu.
+- `scopes` defines a collection of resource names/short-names for the views associated with the plugin. You can specify `all` to provide this shortcut for all views.
+- `command` represents the ad-hoc command the plugin runs upon activation.
+- `background` specifies whether or not the command runs in the background.
+- `args` specifies the various arguments that should apply to the command above.
+- `confirm` shows a confirmation dialog (with the resolved command) before running. Defaults to `true` when `inputs` are defined, `false` otherwise.
+- `dangerous` marks the plugin as dangerous; it is disabled while K9s runs in read-only mode.
+- `override` allows the shortcut to override a built-in K9s key binding.
+- `overwriteOutput` reruns and refreshes the plugin output in place rather than appending.
+- `pipes` specifies a collection of commands to pipe the plugin output through.
+- `inputs` declares interactive prompts collected from the user before the command runs (see below).
+
+### Interactive inputs
+
+As of `v0.50.x`, plugins can prompt for user input before running. Each entry in `inputs` supports:
+
+- `name` — the variable name; exposed to the command/args as `$name`.
+- `label` — the prompt label shown in the dialog.
+- `type` — one of `string`, `number`, `bool`, or `dropdown`.
+- `required` — whether the field must be filled in.
+- `default` — a default value (must be a valid option for `dropdown`, `"true"`/`"false"` for `bool`, and numeric for `number`).
+- `options` — the list of selectable values for a `dropdown`.
+
+A maximum of 5 inputs is supported per plugin, and input names must be unique.
 
 K9s does provide additional environment variables for you to customize your plugins arguments. Currently, the available environment variables are as follows:
 
@@ -118,4 +137,37 @@ description: Bozo
 scopes:
   - deploy
 command: bozo
+```
+
+## Interactive inputs example
+
+This plugin scales a deployment, prompting the user for the desired replica count (via a `number` input) and asking for confirmation before applying.
+
+```yaml
+# $XDG_CONFIG_HOME/k9s/plugins.yaml
+plugins:
+  scale:
+    shortCut: Shift-S
+    description: Scale
+    # Prompting for inputs implies confirm: true unless overridden.
+    confirm: true
+    scopes:
+      - deploy
+    inputs:
+      - name: replicas
+        label: Replica count
+        type: number
+        required: true
+        default: "1"
+    command: kubectl
+    args:
+      - scale
+      - deployment
+      - $NAME
+      - -n
+      - $NAMESPACE
+      - --replicas
+      - $replicas
+      - --context
+      - $CONTEXT
 ```

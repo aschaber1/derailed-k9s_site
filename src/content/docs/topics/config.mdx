@@ -39,8 +39,8 @@ k9s:
   # Represents ui poll intervals in seconds. Default 2secs
   refreshRate: 2
   # Overrides the default k8s api server requests timeout. Defaults 120s
-  apiServerTimeout: 15s
-  # Number of retries once the connection to the api-server is lost. Default 15.
+  apiServerTimeout: 120s
+  # Number of retries once the connection to the api-server is lost. Default 5.
   maxConnRetry: 5
   # Specifies if modification commands like delete/kill/edit are disabled. Default is false
   readOnly: false
@@ -82,7 +82,7 @@ k9s:
   # ShellPod configuration applies to all your clusters
   shellPod:
     # The shell pod image to use.
-    image: busybox:1.35.0
+    image: busybox:1.37.0
     # Override the shell pod entrypoint command.
     command: []
     # Override the shell pod command args.
@@ -177,6 +177,9 @@ k9s:
   featureGates:
     # Enable/Disable nodeShell
     nodeShell: false
+  # Optionally route this context's API traffic through a proxy.
+  proxy:
+    address: http://localhost:8080
 ```
 
 ## Env variables

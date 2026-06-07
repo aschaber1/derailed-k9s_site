@@ -60,6 +60,7 @@ export default defineConfig({
       sidebar: [
         { slug: "topics/install" },
         { slug: "topics/commands" },
+        { slug: "topics/views" },
         {
           label: "Customizations",
           items: [
@@ -70,6 +71,7 @@ export default defineConfig({
                 { slug: "topics/aliases" },
                 { slug: "topics/hotkeys" },
                 { slug: "topics/plugins" },
+                { slug: "topics/jumps" },
                 { slug: "topics/shell" },
               ],
             },

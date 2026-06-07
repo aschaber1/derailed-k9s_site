@@ -22,6 +22,12 @@ hero:
 ---
 
 import { Card, CardGrid, LinkCard } from "@astrojs/starlight/components";
+import { Image } from "astro:assets";
+import pulses from "../../assets/screens/pulses.png";
+import xray from "../../assets/screens/xray.png";
+import pods from "../../assets/screens/pods.png";
+import logs from "../../assets/screens/logs.png";
+import rbac from "../../assets/screens/rbac.png";
 
 K9s is a terminal based UI to interact with your Kubernetes clusters. The aim of this project is to make it easier to navigate, observe and manage your deployed applications in the wild. K9s continually watches Kubernetes for changes and offers subsequent commands to interact with your observed resources.
 
@@ -75,16 +81,28 @@ If you dig this effort and feel K9s is improving your Kubernetes experience and 
 
 [![asciicast](https://asciinema.org/a/305944.svg)](https://asciinema.org/a/305944)
 
-- **Pulses** — a top level dashboard of the state of affairs of your cluster
-  ![Pulses](/screens/pulses.png)
-- **XRay** — dig in your cluster resources and view their dependencies
-  ![XRay](/screens/xray.png)
-- **Pods** — list out your pods status and resource consumption
-  ![Pods](/screens/pods.png)
-- **Logs** — view and interact with your container logs
-  ![Logs](/screens/logs.png)
-- **RBAC** — view the who/what/how of authorizations on your cluster
-  ![RBAC](/screens/rbac.png)
+<CardGrid>
+  <Card title="Pulses">
+    A top level dashboard of the state of affairs of your cluster.
+    <Image src={pulses} alt="K9s Pulses dashboard" loading="lazy" />
+  </Card>
+  <Card title="XRay">
+    Dig in your cluster resources and view their dependencies.
+    <Image src={xray} alt="K9s XRay view" loading="lazy" />
+  </Card>
+  <Card title="Pods">
+    List out your pods status and resource consumption.
+    <Image src={pods} alt="K9s Pods view" loading="lazy" />
+  </Card>
+  <Card title="Logs">
+    View and interact with your container logs.
+    <Image src={logs} alt="K9s Logs view" loading="lazy" />
+  </Card>
+  <Card title="RBAC">
+    View the who/what/how of authorizations on your cluster.
+    <Image src={rbac} alt="K9s RBAC view" loading="lazy" />
+  </Card>
+</CardGrid>
 
 ## Get In Touch!
 

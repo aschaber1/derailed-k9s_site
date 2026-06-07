@@ -2,10 +2,15 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightImageZoom from "starlight-image-zoom";
+import remarkGfm from "remark-gfm";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://k9scli.io",
+  markdown: {
+    // Ensure GitHub-flavored Markdown (tables, etc.) works in .md and .mdx.
+    remarkPlugins: [remarkGfm],
+  },
   integrations: [
     starlight({
       title: "K9s",

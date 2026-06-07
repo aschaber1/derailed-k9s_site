@@ -4,7 +4,9 @@ description: Style K9s with your own look and feel using skin files.
 ---
 
 import { Aside } from "@astrojs/starlight/components";
+import { Image } from "astro:assets";
 import ColorSwatches from "../../../components/ColorSwatches.astro";
+import dracula from "../../../assets/skins/dracula.png";
 
 ## Overview
 
@@ -21,7 +23,7 @@ Below is a sample skin file, more skins are available in the [skins](https://git
 Colors can be defined as named colors (see table below) or using an hex representation.
 To preserve your terminal session background color, we've added a color named `default` to indicate a transparent background color if so desired.
 
-![K9s Dracula skin](/skins/dracula.png)
+<Image src={dracula} alt="K9s Dracula skin" loading="lazy" />
 
 <Aside type="caution">
   Changes to the skin file layout will occur as more features are added, so

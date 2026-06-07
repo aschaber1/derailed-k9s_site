@@ -12,3 +12,14 @@
   --sl-color-accent: #1f63c0;
   --sl-color-accent-high: #112a4a;
 }
+
+/* Rounded, shadowed hero image (echoes the old img.pic styling) */
+.hero img {
+  border-radius: 10px;
+}
+
+/* Center and constrain inline preview screenshots in Markdown content */
+.sl-markdown-content img {
+  border-radius: 6px;
+}
+

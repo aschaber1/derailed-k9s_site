@@ -50,8 +50,32 @@ export default defineConfig({
         },
       ],
       customCss: ["./src/styles/custom.css"],
-      // Sidebar is populated once topic pages are migrated.
-      sidebar: [],
+      sidebar: [
+        { slug: "topics/install" },
+        { slug: "topics/commands" },
+        {
+          label: "Customizations",
+          items: [
+            {
+              label: "Feel",
+              items: [
+                { slug: "topics/config", label: "K9s" },
+                { slug: "topics/aliases" },
+                { slug: "topics/hotkeys" },
+                { slug: "topics/plugins" },
+                { slug: "topics/shell" },
+              ],
+            },
+            {
+              label: "Look",
+              items: [{ slug: "topics/skins" }, { slug: "topics/columns" }],
+            },
+          ],
+        },
+        { slug: "topics/bench" },
+        { slug: "topics/rbac" },
+        { slug: "topics/video" },
+      ],
     }),
   ],
   redirects: {

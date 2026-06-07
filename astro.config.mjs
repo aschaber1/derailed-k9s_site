@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import starlightImageZoom from "starlight-image-zoom";
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,6 +11,7 @@ export default defineConfig({
       title: "K9s",
       description:
         "K9s provides a terminal UI to interact with your Kubernetes clusters.",
+      plugins: [starlightImageZoom()],
       logo: {
         src: "./src/assets/k9s.png",
         alt: "K9s",

@@ -34,7 +34,7 @@ export default defineConfig({
         },
       ],
       editLink: {
-        baseUrl: "https://github.com/derailed/k9s/edit/master/k9s_site/",
+        baseUrl: "https://github.com/derailed/k9s_site/edit/master/",
       },
       head: [
         {
